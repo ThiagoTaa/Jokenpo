@@ -1,7 +1,9 @@
 var jogadorNome;
-var computadorEscolha;
-var jogadorEscolha;
+var jogadorPontos = 0;
+var jogadorEscolha = 0;
 
+var computadorPontos = 0; 
+var computadorEscolha = 0;
 //Função para exibir mensagem
 function mensagem(texto){
     document.getElementById('mensagem').innerHTML = texto;
@@ -47,10 +49,18 @@ function calcularEscolha (jogador, computador){
     }
     else if(jogador == 3 && computador == 3){
         return 0;
-    }
-    
+    } 
 }
-
+//Função para somar pontos
+function somarPontosJogar() {
+    jogadorPontos = jogadorPontos + 1;
+    document.getElementById('jogador-pontos').innerHTML = jogadorPontos;
+}
+// Função para somar pontos do computador
+function somarPontosComputador() {
+    computadorPontos = computadorPontos + 1;
+    document.getElementById('computador-pontos').innerHTML = computadorPontos;
+}
 /**
  * escolhe a Jogada do usuario//
  * 1 -- Pedra
@@ -70,9 +80,11 @@ function jogar(escolha){
     }
     else if (ganhador == 1) {
         mensagem('Ponto para ' + jogadorNome);
+        somarPontosJogar();
     }
     else if (ganhador == 2) {
         mensagem('Ponto para o Computador');
+        somarPontosComputador();
     }
     //calcular vencedor
 
