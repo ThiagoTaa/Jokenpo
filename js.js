@@ -61,6 +61,15 @@ function somarPontosComputador() {
     computadorPontos = computadorPontos + 1;
     document.getElementById('computador-pontos').innerHTML = computadorPontos;
 }
+//função para selecionar a escolha
+function selecionar(tipo, escolha) {
+    document.getElementById(tipo + '-escolha-' + escolha).classList.add('selecionado');
+}
+
+//Função para deselecionar a escolha anterior
+function deselecionar(tipo, escolha) {
+    document.getElementById(tipo + '-escolha-' + escolha).classList.remove('selecionado');
+}
 /**
  * escolhe a Jogada do usuario//
  * 1 -- Pedra
@@ -69,9 +78,11 @@ function somarPontosComputador() {
 */
 function jogar(escolha){
     jogadorEscolha = escolha;
+    selecionar('jogador', jogadorEscolha);
 
     //sortear jogada do computador
     computadorEscolha = sortear(1, 3);
+    selecionar('computador', computadorEscolha);
 
     var ganhador = calcularEscolha(jogadorEscolha, computadorEscolha);
    
@@ -86,15 +97,17 @@ function jogar(escolha){
         mensagem('Ponto para o Computador');
         somarPontosComputador();
     }
-    //calcular vencedor
+    setTimeout(function () { 
+        deselecionar('jogador', jogadorEscolha);
+        deselecionar('computador', computadorEscolha);
 
-    //somar pontos
-
-    //exibir para o usuario (mão)
+        mensagem(jogadorNome + ' escolha uma opção...')
+    
+    }, 3500);
 }
-document.getElementById('jogador-escolha1').onclick = function(){jogar(1)};
-document.getElementById('jogador-escolha2').onclick = function(){jogar(2)};
-document.getElementById('jogador-escolha3').onclick = function(){jogar(3)};
+document.getElementById('jogador-escolha-1').onclick = function(){jogar(1)};
+document.getElementById('jogador-escolha-2').onclick = function(){jogar(2)};
+document.getElementById('jogador-escolha-3').onclick = function(){jogar(3)};
 
 jogadorNome = prompt('Qual é o seu nome?');
 
