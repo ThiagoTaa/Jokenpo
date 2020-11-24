@@ -101,7 +101,7 @@ function jogar(escolha){
         deselecionar('jogador', jogadorEscolha);
         deselecionar('computador', computadorEscolha);
 
-        mensagem(jogadorNome + ' escolha uma opção...')
+        mensagem(jogadorNome + ' escolha uma opção...');
     
     }, 3500);
 }
